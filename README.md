@@ -100,6 +100,7 @@ model.compile(loss='categorical_crossentropy',
 A comparison table with all the accuracy scores for the three models.
 
 |                      |     Full Dataset    |                    |     Artists with more than 200 paintings    |                    |
+
 |----------------------|---------------------|--------------------|---------------------------------------------|--------------------|
 |                      |     Training Set    |     Testing Set    |     Training Set                            |     Testing Set    |
 |     Random Forest    |     ———————         |     27%            |     ———————                                 |     51%            |
