@@ -13,6 +13,7 @@ The goal of this project is to train Random Forest, Convolutional Neural Network
 
 ### Coding
 #### Libraries
+```
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -41,9 +42,10 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 from numpy.random import seed
 from tensorflow import set_random_seed
+```
 
 #### Creation of CNN Model
-
+```
 model = tf.keras.Sequential([
 
     tf.keras.layers.Conv2D(32, (3, 3), input_shape=train_input_shape, activation=tf.keras.activations.relu,
@@ -63,8 +65,10 @@ model = tf.keras.Sequential([
 model.compile(loss='categorical_crossentropy',
               metrics=['accuracy'],
               optimizer=tf.keras.optimizers.Adam(lr=3e-4))
+```
               
 #### Creation of ResNet 50 Model
+```
 base_model = ResNet50(weights='imagenet', include_top=False, input_shape=train_input_shape)
 
 for layer in base_model.layers:
@@ -89,10 +93,17 @@ optimizer = Adam(lr=0.0001)
 model.compile(loss='categorical_crossentropy',
               optimizer=optimizer,
               metrics=['accuracy'])
+```
               
 ### Conclusions
 
-Click ![here]() to see a comparison table with all the accuracy scores for the three models.
+A comparison table with all the accuracy scores for the three models.
+|                      |     Full Dataset    |                    |     Artists with more than 200 paintings    |                    |
+|----------------------|---------------------|--------------------|---------------------------------------------|--------------------|
+|                      |     Training Set    |     Testing Set    |     Training Set                            |     Testing Set    |
+|     Random Forest    |     ———————         |     27%            |     ———————                                 |     51%            |
+|     CNN              |     72.63%          |     37.25%         |     60.68%                                  |     48.42%         |
+|     ResNet 50        |     75.60%          |     53.39%         |     99.94%                                  |     85.73%         |
 
 The project manages to collect 8,446 art pieces from 50 famous western artists from 1226 to 1989. By applying Random Forest Classifier, CNN, and ResNet 50 models to the two datasets, we successfully train the models to learn the characteristics of different artists and predict the authority of a piece of artwork based on the painting itself, with no other information given. The high accuracy, 85.73% in the testing set, of the ResNet 50 model shows that convolutional neural networks are powerful tools for image recognition and image classification. We have also shown that Random Forest Classifier is a better choice when the data is balanced than CNN in image classification problems. Although many other models work well with image classification or image recognition, ResNet 50 is relatively less time-consuming and requires fewer computing resources compared to other pre-trained artificial neural networks. Eventually, ResNet 50 could fit well into the help of identifying an unknown piece of artwork, and figure out if it comes from a famous artist, an antique store, someone’s attic, or an undiscovered artist. 
 
